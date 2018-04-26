@@ -2,6 +2,8 @@ import random
 import time
 import numpy as np
 def NDieS(trials):
+    #I assume the dices are all the same, so if I roll ten dices for four times, it's equavelent to roll a dices for forty 
+    #times, that's what my codes mean below.
     sides=random.randint(2,10)
     numberof_dice=random.randint(1,10)
     trials=trials*   numberof_dice
