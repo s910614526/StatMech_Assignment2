@@ -58,8 +58,9 @@ def NDieS(trials):
  
 def run():
  
-    OneDieS(3)
-    OneDieS(100)
+    NDieS (100)
+    NDieS(100)
+    NDieS(100)
  
  
 run()
