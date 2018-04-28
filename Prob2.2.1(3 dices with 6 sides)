@@ -1,0 +1,91 @@
+# I don't know how to modify my code to make it get the answer for three dices with 6 sieds and arbitrary number of dice and 
+#sides, so I divide prob2 into 2 part . One is to run the 3 dices with 6 sides, and here is it.
+import random
+import time
+import numpy as np
+def NDie_diffS(trials,Sides):
+    numberof_dice=random.randint(3,3)
+ #   Sides=np.random.choice(range(5,6), numberof_dice)
+    
+    Max=max(Sides)
+    
+    print(Max)
+    c1=time.clock()
+    print("---------------------------------------------------")
+    print("Number of sides = ", Sides)
+    print("Number of trials = ", trials)
+    print("Number of dices = ",    numberof_dice)
+    
+    histo = []
+    
+    for i in range(len(Sides)):
+        histo.append([])
+        
+    for i in range( len(Sides)) :
+        
+        for s in range(Sides[i]):
+            histo[i].append(0.0)
+    
+    r = 0
+    
+    for t in range(trials):
+        for i in range(len(Sides)):
+               r = random.randint(0,Sides[i]-1)
+               histo[i][r]=histo[i][r] + 1
+    H=np.array(histo)
+    a=H.shape[1]
+ 
+    for x in range(Max):
+        if a< x:
+            def matrix(H, n):
+                for row in H:
+                    yield row + [0] * (n - len(row))
+                for i in range(len(H), n):
+                    yield [0] * n
+            HH=list(matrix(H,Max))
+            Hsum=[sum(x) for x in zip(*HH)]
+            Prob=[round(x/Max,3) for x in Hsum]
+            slist=list(range(1,len(Hsum)+1))
+            print('Sides:',slist,) 
+            print('Total number of each side',Hsum)
+            print('Probability of each sides',Prob)
+            break
+    
+
+        else:
+            Hsum=[sum(x) for x in zip(*H)]
+            Prob=[round(x/Max,3) for x in Hsum]
+            slist=list(range(1,len(Hsum)+1))
+            print('Sides:',slist) 
+            print('Total number of each side',Hsum)
+            print('Probability of each sides',Prob)
+            break
+    
+
+            
+        
+                 
+                
+
+    
+   
+        
+        
+        
+ 
+    
+    
+ 
+    c2=time.clock()
+    print("Elapsed time =", c2-c1)
+
+
+
+ 
+def run():
+     Sides=[6,6,6]
+     NDie_diffS(3,Sides)
+ 
+ 
+ 
+run()
