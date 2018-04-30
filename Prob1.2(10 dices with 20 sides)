@@ -30,8 +30,10 @@ def NDieS(trials):
     
     
     
-    mean = round(sum(SidesTr*Hmat/trials),3)
-    var = round(sum(pow(SidesTr,2)*Hmat/trials)-pow(mean,2),3)
+    # mean = round(sum(SidesTr*Hmat/trials)*numberof_dice,3)
+    mean = round(sum(Sides*histogram/trials),3)*numberof_dice
+ #   var = round(sum(SidesTr*SidesTr*Hmat*numberof_dice/tirals)-pow(mean,2),3)
+    var = round(sum(pow(Sides,2)*histogram/trials)-pow(sum(Sides*histogram/trials),2),3)*numberof_dice
     stand=round(pow(var,1/2),4)
     theomean=round((sides+1)/2,3)
     theovar=round( (1/sides*sum(pow(Sides,2))-pow((sides+1)/2,2)),3)
