@@ -2,8 +2,11 @@ import random
 import time
 import numpy as np
 def NDieS(trials):
-    sides=random.randint(19,20)
-    numberof_dice=random.randint(9,10)
+    #I assume the dices are all the same, so if I roll ten dices for four times, it's equavelent to roll a dices for forty 
+    #times, that's what my codes mean below.
+    #answer to prob1.3: increase
+    sides=random.randint(2,10)
+    numberof_dice=random.randint(1,10)
     trials=trials*   numberof_dice
     c1=time.clock()
     print("---------------------------------------------------")
@@ -25,10 +28,11 @@ def NDieS(trials):
         histogram[r] = histogram[r] + 1
     Hmat=np.array(histogram)
     SidesTr=Sides.T
+    print(Hmat)
+    print(SidesTr)
     
     
-    
-    mean = round(sum(SidesTr*Hmat/trials),3)
+    mean = sum(SidesTr*Hmat/trials)
     var = round(sum(pow(SidesTr,2)*Hmat/trials)-pow(mean,2),3)
     stand=round(pow(var,1/2),4)
     theomean=round((sides+1)/2,3)
@@ -57,12 +61,9 @@ def NDieS(trials):
  
 def run():
  
-     NDieS(100)
-     NDieS(100)
-     NDieS(100)
-     NDieS(100)
-     NDieS(100)
-     NDieS(100)
+    NDieS (100)
+    NDieS(100)
+    NDieS(100)
  
  
 run()
