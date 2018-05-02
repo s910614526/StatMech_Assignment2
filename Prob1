@@ -1,12 +1,15 @@
-import random
-import time
-import numpy as np
-def NDieS(trials):
+
     #I assume the dices are all the same, so if I roll ten dices for four times, it's equavelent to roll a dices for forty 
     #times, that's what my codes mean below.
     #answer to prob1.3: increase
-    sides=random.randint(2,10)
-    numberof_dice=random.randint(1,10)
+import random
+import time
+import numpy as np
+def NDieS(trials,numberof_dice,sides):
+ #   sides=random.randint(2,10)
+ #   numberof_dice=random.randint(1,2)
+
+    
     trials=trials*   numberof_dice
     c1=time.clock()
     print("---------------------------------------------------")
@@ -15,31 +18,41 @@ def NDieS(trials):
     print("Number of dices = ",    numberof_dice)
     Sides = np.linspace(1,sides,sides)
     
-    histogram = []
+    histo = []
+    for i in range(trials):
+        histo.append([])
+        
+    for s in range(trials):
+     for i in range(numberof_dice):
+         histo[s].append(0.0)
     
-    for s in range(sides):
-        histogram.append(0)
     
-
+    a=0
     r = 0
     for t in range(trials):
-        r = int(random.random()*sides)
-       
-        histogram[r] = histogram[r] + 1
-    Hmat=np.array(histogram)
-    SidesTr=Sides.T
-    print(Hmat)
-    print(SidesTr)
+        for i in range(numberof_dice):
+            r = random.randint(1,sides)
+            histo[t][i]= histo[t][i] + r
+            
     
+    Hmat=np.array(histo)
     
-    # mean = round(sum(SidesTr*Hmat/trials)*numberof_dice,3)
-    mean = round(sum(Sides*histogram/trials),3)*numberof_dice
- #   var = round(sum(SidesTr*SidesTr*Hmat*numberof_dice/tirals)-pow(mean,2),3)
-    var = round(sum(pow(Sides,2)*histogram/trials)-pow(sum(Sides*histogram/trials),2),3)*numberof_dice
+
+    Hsum=np.sum(Hmat, axis=1)
+ 
+   
+            
+            
+            
+   
+    mean = round(sum(Hsum)/trials,3)
+    var =round(sum( pow(Hsum,2))/trials-mean*mean,2)
     stand=round(pow(var,1/2),4)
-    theomean=round((sides+1)/2,3)
-    theovar=round( (1/sides*sum(pow(Sides,2))-pow((sides+1)/2,2)),3)
+    theomean=round((sides+1)*numberof_dice/2,3)
+    theovar=(sides**2 -1)/12*numberof_dice     
+
     theostand=round(pow(theovar,1/2),5)
+                   
     deltamean=round(abs(mean-theomean)/theomean*100,5)
     deltavar=abs(var-theovar)/theovar*100
     deltastand=round(abs(stand-theostand)/theostand*100,5)
@@ -49,11 +62,8 @@ def NDieS(trials):
     print('error of mean',deltamean,'%')
     print('error of variance',deltavar,'%')
     print('error of standard deviation',deltastand,'%')
-    print("s, N_s, N_s-N/6, N_s/N, N_s/N-1/6")
-    j = 0
-    while j < sides:
-        print(j+1, histogram[j],round( histogram[j]-trials/sides,3), round(histogram[j]/trials,3), round(histogram[j]/trials-1/6),3)
-        j = j + 1
+    
+ 
     
     c2=time.clock()
     print("Elapsed time =", c2-c1)
@@ -63,9 +73,15 @@ def NDieS(trials):
  
 def run():
  
-    NDieS (100)
-    NDieS(100)
-    NDieS(100)
+ 
+    NDieS(10,2,10)
+    NDieS(100,2,10)
+    NDieS(1000,2,10)
+    NDieS(10000,2,10)
+    NDieS(100000000,2,10)
+     
+ 
+ 
  
  
 run()
