@@ -81,3 +81,39 @@ def run():
  
  
 run()
+#result:(from command window)
+
+---------------------------------------------------
+Number of sides =  10
+Number of trials =  20
+Number of dices =  2
+expmean: 10.65 theomean: 11.0
+expvariance: 10.43 theovar: 16.5
+expstandev: 3.2296 theostand: 4.06202
+error of mean 3.18182 %
+error of variance 36.78787878787879 %
+error of standard deviation 20.49276 %
+Elapsed time = 0.022007
+---------------------------------------------------
+Number of sides =  10
+Number of trials =  2000
+Number of dices =  2
+expmean: 10.896 theomean: 11.0
+expvariance: 17.17 theovar: 16.5
+expstandev: 4.1437 theostand: 4.06202
+error of mean 0.94545 %
+error of variance 4.060606060606071 %
+error of standard deviation 2.01082 %
+Elapsed time = 0.038509000000000015
+---------------------------------------------------
+
+Number of sides =  10
+Number of trials =  2000000
+Number of dices =  2
+expmean: 11.001 theomean: 11.0
+expvariance: 16.49 theovar: 16.5
+expstandev: 4.0608 theostand: 4.06202
+error of mean 0.00909 %
+error of variance 0.06060606060607008 %
+error of standard deviation 0.03003 %
+Elapsed time = 10.857649
